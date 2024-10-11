@@ -1,5 +1,5 @@
 pymongo
-fastapi[all]
+fastapi
 pydantic
 datetime
 typing
