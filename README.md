@@ -1,56 +1,66 @@
-FastAPI Mongo VodexAI
-Getting Started
-This repository contains a FastAPI application that integrates with MongoDB.
+# FastAPI Mongo VodexAI
 
-Prerequisites
-Python 3.7 or higher
-Virtualenv (for creating isolated environments)
-Installation Steps
-Clone the Repository
+This project is a FastAPI application that connects to a MongoDB database.
 
-Open your terminal and run the following command:
+## Getting Started
 
-bash
-Copy code
+Follow the steps below to set up and run the project locally.
+
+### 1. Clone the Repository
+
+Open your terminal and run the following command to clone the repository:
+
+```bash
 git clone https://github.com/siddharth6758/fastapi-mongo-vodexai.git
-Create a Virtual Environment
+```
 
-Navigate to the cloned directory and create a virtual environment:
+### 2. Create a Virtual Environment
 
-bash
-Copy code
+Navigate to the project directory:
+
+```bash
 cd fastapi-mongo-vodexai
+```
+
+Then, create a virtual environment. You can use `venv` or any other virtual environment tool. Here's how to do it with `venv`:
+
+```bash
 virtualenv venv
+```
+
 Activate the virtual environment:
 
-On macOS/Linux:
+- On macOS/Linux:
 
-bash
-Copy code
-source venv/bin/activate
-On Windows:
+  ```bash
+  source venv/bin/activate
+  ```
 
-bash
-Copy code
-venv\Scripts\activate
-Install Dependencies
+- On Windows:
 
-Install the required packages using the requirements.txt file:
+  ```bash
+  .\venv\Scripts\activate
+  ```
 
-bash
-Copy code
+### 3. Install Requirements
+
+Install the required packages listed in `requirements.txt`:
+
+```bash
 pip install -r requirements.txt
-Run the Application
+```
 
-Start the FastAPI application with the following command:
+### 4. Run the Application
 
-bash
-Copy code
+In your terminal, run the following command to start the FastAPI application:
+
+```bash
 uvicorn main:app --reload
-Your application should now be running at http://127.0.0.1:8000.
+```
 
-Usage
-You can access the API documentation at http://127.0.0.1:8000/docs.
+You should now be able to access the application at `http://127.0.0.1:8000`.
 
-Contributing
-Feel free to open issues or submit pull requests!
+## Additional Information
+
+- For API documentation, visit `http://127.0.0.1:8000/docs` after running the application.
+- Ensure that you have MongoDB installed and running for the application to connect successfully.
