@@ -1,0 +1,5 @@
+pymongo
+fastapi[all]
+pydantic
+datetime
+typing
