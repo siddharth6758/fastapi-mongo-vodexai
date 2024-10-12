@@ -4,5 +4,5 @@ from routes.clock_in import clock
 
 app = FastAPI()
 
-app.include_router(item)
-app.include_router(clock)
+app.include_router(item, prefix='/items')
+app.include_router(clock, prefix='/clock-in')

@@ -8,12 +8,12 @@ from datetime import datetime
 
 clock = APIRouter()
 
-@clock.post('/clock-in')
+@clock.post('')
 async def insert_record(record: ClockRecords):
     conn.vodexai.clockrecord.insert_one(dict(record))
     return {"status": "Clock Record created", "item":str(record)}
 
-@clock.get('/clock-in/{id}')
+@clock.get('/{id}')
 async def get_records_from_id(id):
     try:
         item = conn.vodexai.clockrecord.find_one({'_id': ObjectId(id)})
@@ -22,7 +22,7 @@ async def get_records_from_id(id):
         return HTTPException(status_code=404, detail=str(e))
 
 
-@clock.get("/clock-in/filter")
+@clock.get("/filter/")
 async def filter_clock_records(
     email: Optional[str] = None,
     location: Optional[str] = None,
@@ -36,25 +36,24 @@ async def filter_clock_records(
             query["location"] = location
         if insert_date:
             query["insert_date"] = {"$gt": insert_date}
-        records = []
-        async for record in conn.vodexai.clockrecord.find(query):
-            record["id"] = str(record["_id"])
-            records.append(record)
+        records = list(conn.vodexai.clockrecord.find(query))
+        for record in records:
+            record['_id'] = str(record['_id'])
         return records
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
 
-@clock.get('/all-clock-in')
+@clock.get('/')
 async def get_all_records():
     records = list(conn.vodexai.clockrecord.find())
     return getAllClockRecords(records)
 
-@clock.put('/clock-in/{id}')
+@clock.put('/{id}')
 async def update_clock_record(id, record: ClockRecords):
     conn.vodexai.clockrecord.find_one_and_update({"_id": ObjectId(id)},{"$set":dict(record)})
     return {"status":"Clock Record Updated","record":str(record)}
 
-@clock.delete('/clock-in/{id}')
+@clock.delete('/{id}')
 async def delete_clock_record(id):
     conn.vodexai.clockrecord.find_one_and_delete({'_id': ObjectId(id)})
     return {"status":"Clock Record Deleted"}
